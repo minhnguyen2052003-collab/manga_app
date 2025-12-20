@@ -1,10 +1,13 @@
-import 'package:comic_app_gpt/screens/home_screen.dart';
+import 'package:comic_app_gpt/screens/list_manga_screen.dart';
 import 'package:flutter/material.dart';
-import 'models/comic.dart';
-import 'package:comic_app_gpt/screens/home_screen.dart';
+import 'models/poster_image.dart';
+import 'package:comic_app_gpt/screens/list_manga_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -19,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home: const ListMangaScreen(),
     );
   }
 }

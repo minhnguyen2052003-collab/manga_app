@@ -1,41 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../providers/rating_provider.dart';
 
 
-class StarRating extends StatefulWidget{
-  const StarRating({super.key, required this.size, required this.maxRating, required this.selectedColor, required this.unselectedColor});
-  final int maxRating;
-  final double size;
-  final Color selectedColor;
-  final Color unselectedColor;
-
+class StarRating extends ConsumerWidget{
+  const StarRating({super.key});
 
   @override
-  State<StarRating> createState() {
-    return _StarRatingState();
-  }
-}
-
-class _StarRatingState extends State<StarRating>{
-  int currentRating = 0;
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final rating = ref.watch(ratingProvider);
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: List.generate(widget.maxRating, (index) {
-        final isSelected = index < currentRating;
-
+      children: List.generate(5, (index) {
+        final starIndex = index +1;
+        final isSelected = starIndex <= rating;
         return IconButton(
           onPressed: () {
-            setState(() {
-              currentRating = index + 1;
-            });
+            ref.read(ratingProvider.notifier).setRating(starIndex);
           },
           icon: Icon(
             isSelected ? Icons.star : Icons.star_border,
-            size: widget.size,
+            size: 32,
             color: isSelected
-                ? widget.selectedColor
-                : widget.unselectedColor,
+                ? Colors.amber
+                : Colors.grey,
           ),
         );
       }),
