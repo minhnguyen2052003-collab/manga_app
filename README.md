@@ -1,16 +1,21 @@
-# comic_app_gpt
+## 📸 Screenshots
 
-A new Flutter project.
+### 🏠 Home
+![Home](screenshots/home.jpg)
 
-## Getting Started
+### 📖 Detail
+![Detail](screenshots/detail.jpg)
 
-This project is a starting point for a Flutter application.
+### 🛒 Cart
+![Cart](screenshots/cart.jpg)
+### 💳 Payment
+![Payment](screenshots/payment.jpg)
 
-A few resources to get you started if this is your first Flutter project:
+### ⭐ Favorite
+![Favorite](screenshots/favorite.jpg)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 🔍 Search
+![Search](screenshots/search.jpg)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 🗂 Category
+![Category](screenshots/category.jpg)
