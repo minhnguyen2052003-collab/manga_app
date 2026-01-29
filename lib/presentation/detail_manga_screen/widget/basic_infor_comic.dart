@@ -1,7 +1,9 @@
-import 'package:comic_app_gpt/features/manga/data/models/manga.dart';
-import 'package:comic_app_gpt/core/widgets/tags.dart';
+
+import 'package:comic_app_gpt/presentation/detail_manga_screen/widget/tags.dart';
 import 'package:flutter/material.dart';
-import 'package:comic_app_gpt/features/manga/data/models/poster_image.dart';
+
+
+import '../../../utils/Manga.dart';
 
 class BasicInforMangaWidget extends StatelessWidget{
   const BasicInforMangaWidget({super.key, required this.selectedManga, required this.isBuying});

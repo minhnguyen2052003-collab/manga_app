@@ -1,12 +1,12 @@
-import 'package:comic_app_gpt/features/manga/presentation/controller/manga_controller.dart';
+import 'package:comic_app_gpt/presentation/list_manga_screen/modelview/manga_controller.dart';
 import 'package:comic_app_gpt/domain/repository/manga_repository.dart';
-import 'package:comic_app_gpt/features/manga/presentation/provider/manga_controller_provider.dart';
+import 'package:comic_app_gpt/presentation/list_manga_screen/modelview/manga_controller_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 
-import '../../data/models/list_manga_state.dart';
-import '../../data/models/manga.dart';
-import '../../../../domain/service/manga_api.dart';
+import '../../../utils/Manga.dart';
+import 'list_manga_state.dart';
+import '../../../data/manga_api.dart';
 
 class StateListMangaProvider extends StateNotifier<ListMangaState> {
   final MangaController controller;

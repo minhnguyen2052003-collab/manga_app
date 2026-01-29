@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import 'manga.dart';
+import '../../../utils/Manga.dart';
 enum MangaViewMode {
   home,
   searchText,

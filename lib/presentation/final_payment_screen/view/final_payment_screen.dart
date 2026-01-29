@@ -1,7 +1,11 @@
-import 'package:comic_app_gpt/features/manga/data/models/manga.dart';
-import 'package:comic_app_gpt/features/manga/data/models/poster_image.dart';
+
+import 'package:comic_app_gpt/presentation/cart_creen/bloc/cart_bloc.dart';
+import 'package:comic_app_gpt/presentation/cart_creen/bloc/cart_event.dart';
 import 'package:comic_app_gpt/presentation/detail_manga_screen/widget/basic_infor_comic.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../utils/Manga.dart';
 
 class FinalPaymentScreen extends StatelessWidget {
   const FinalPaymentScreen({
@@ -176,6 +180,7 @@ class FinalPaymentScreen extends StatelessWidget {
               Expanded(
                 child: GestureDetector(
                   onTap: () {
+                    context.read<CartBloc>().add(AddComicToCart(selectedManga));
                     showSuccessPaymentDialog(context);
                   },
                   child: Container(

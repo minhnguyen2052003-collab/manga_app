@@ -1,10 +1,12 @@
-import 'package:comic_app_gpt/features/manga/data/models/category.dart';
-import 'package:comic_app_gpt/features/manga/data/models/manga.dart';
-import 'package:comic_app_gpt/services/categories_api.dart';
-import 'package:flutter/material.dart';
-import 'package:comic_app_gpt/domain/service/manga_api.dart';
 
-import '../network/dio_client.dart';
+
+import 'package:comic_app_gpt/data/tag_api.dart';
+import 'package:flutter/material.dart';
+import 'package:comic_app_gpt/data/manga_api.dart';
+
+import '../../../data/dio_client.dart';
+import '../../../utils/Manga.dart';
+import '../../../utils/category.dart';
 
 class TagsWidget extends StatelessWidget{
    const TagsWidget({super.key, required this.selectedManga});
@@ -16,7 +18,7 @@ class TagsWidget extends StatelessWidget{
     final dio = DioClient.dio;
 
     return FutureBuilder(
-        future: CategoriesApi(dio).fetchCategories(selectedManga.id),
+        future: TagApi(dio).fetchCategories(selectedManga.id),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());

@@ -18,6 +18,12 @@ class LocalStorageService {
     await prefs.setString("refresh_token", token);
   }
 
+  Future<void> clearAccessToken()async{
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove("access_token");
+    await prefs.remove("refresh_token");
+  }
+
 }
 
 final localStorageProvider = Provider<LocalStorageService>((ref) => LocalStorageService());

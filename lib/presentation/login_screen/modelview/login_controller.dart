@@ -21,6 +21,12 @@ class LoginController extends StateNotifier<AuthStatus> {
     state = AuthStatus.authenticated;
     return success;
   }
+
+  Future<void> clearAccessToken() async {
+    await authRepository.clearAccessToken();
+    state = AuthStatus.unauthenticated;
+
+  }
 }
 
 final authControllerProvider =

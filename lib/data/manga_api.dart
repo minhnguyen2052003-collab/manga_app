@@ -1,6 +1,7 @@
-import 'package:comic_app_gpt/features/manga/data/models/category.dart';
-import 'package:comic_app_gpt/features/manga/data/models/manga.dart';
+
 import 'package:dio/dio.dart';
+
+import '../utils/Manga.dart';
 
 class MangaApi {
   final Dio dio;

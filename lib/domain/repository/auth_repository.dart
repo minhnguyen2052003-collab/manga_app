@@ -1,14 +1,14 @@
 
-import 'package:comic_app_gpt/features/auth/data/auth_service.dart';
-import 'package:comic_app_gpt/features/auth/data/local_storage_service.dart';
+import 'package:comic_app_gpt/domain/service/auth_service.dart';
+import 'package:comic_app_gpt/domain/service/local_storage_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/network/auth_interceptor.dart';
-import '../../../core/network/dio_client.dart';
+import '../../data/auth_interceptor.dart';
+import '../../data/dio_client.dart';
 
 class AuthRepository {
   final AuthService authService;
-  final LocalStorageService localStorageService;
+  late final LocalStorageService localStorageService;
   final AuthInterceptor authInterceptor;
 
   AuthRepository(this.authService, this.localStorageService,this.authInterceptor);
@@ -33,6 +33,11 @@ class AuthRepository {
 
   Future<String?> getAccessToken() {
     return localStorageService.getAccessToken();
+  }
+
+  Future<void> clearAccessToken()async{
+    await localStorageService.clearAccessToken();
+
   }
 
 

@@ -1,6 +1,7 @@
-import 'package:comic_app_gpt/features/auth/presentation/login_controller.dart';
-import 'package:comic_app_gpt/features/auth/presentation/login_screen.dart';
-import 'package:comic_app_gpt/features/manga/presentation/screen/list_manga_screen.dart';
+import 'package:comic_app_gpt/presentation/login_screen/modelview/login_controller.dart';
+import 'package:comic_app_gpt/presentation/login_screen/view/login_screen.dart';
+import 'package:comic_app_gpt/presentation/list_manga_screen/view/list_manga_screen.dart';
+import 'package:comic_app_gpt/presentation/main_screen/view/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -31,7 +32,7 @@ class _FirstScreenState extends ConsumerState<FirstScreen> {
           body: Center(child: CircularProgressIndicator()),
         );
       case AuthStatus.authenticated:
-        return const ListMangaScreen();
+        return const MainScreen();
       case AuthStatus.unauthenticated:
         return const LoginScreen();
     }

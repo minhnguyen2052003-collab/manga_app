@@ -1,7 +1,8 @@
-import 'package:comic_app_gpt/core/network/dio_client.dart';
-import 'package:comic_app_gpt/features/manga/data/models/category.dart';
+import 'package:comic_app_gpt/data/dio_client.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../utils/category.dart';
 
 
 class CategoriesApi {

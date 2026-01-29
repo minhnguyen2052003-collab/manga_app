@@ -1,9 +1,10 @@
-import 'package:comic_app_gpt/features/manga/data/models/manga.dart';
-import 'package:comic_app_gpt/features/manga/data/models/poster_image.dart';
-import 'package:comic_app_gpt/features/manga/presentation/provider/rating_provider.dart';
+
 import 'package:comic_app_gpt/presentation/detail_manga_screen/widget/tags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../utils/Manga.dart';
+import '../../detail_manga_screen/modelview/rating_provider.dart';
 
 class RatingScreen extends ConsumerWidget {
   const RatingScreen({super.key, required this.selectedManga});

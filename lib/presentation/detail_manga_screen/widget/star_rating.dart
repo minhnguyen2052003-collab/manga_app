@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../features/manga/presentation/provider/rating_provider.dart';
+import '../modelview/rating_provider.dart';
+
 
 
 class StarRating extends ConsumerWidget{

@@ -1,7 +1,9 @@
-import 'package:comic_app_gpt/features/manga/data/models/manga.dart';
-import 'package:comic_app_gpt/features/manga/presentation/screen/manga_detail_screen.dart';
+
 import 'package:flutter/material.dart';
-import 'package:comic_app_gpt/domain/service/manga_api.dart';
+import 'package:comic_app_gpt/data/manga_api.dart';
+
+import '../../../utils/Manga.dart';
+import '../../detail_manga_screen/view/manga_detail_screen.dart';
 
 
 

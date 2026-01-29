@@ -1,8 +1,9 @@
-import 'package:comic_app_gpt/features/manga/data/models/manga.dart';
-import 'package:comic_app_gpt/features/manga/data/models/poster_image.dart';
-import 'package:comic_app_gpt/screens/final_payment_screen.dart';
+
+import 'package:comic_app_gpt/presentation/final_payment_screen/view/final_payment_screen.dart';
 import 'package:comic_app_gpt/presentation/detail_manga_screen/widget/basic_infor_comic.dart';
 import 'package:flutter/material.dart';
+
+import '../../../utils/Manga.dart';
 
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key, required this.selectedManga});

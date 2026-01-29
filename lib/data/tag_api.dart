@@ -1,9 +1,11 @@
-import 'package:comic_app_gpt/features/manga/data/models/category.dart';
+
 import 'package:dio/dio.dart';
 
-class CategoriesApi {
+import '../utils/category.dart';
+
+class TagApi {
   final Dio dio;
-  CategoriesApi(this.dio);
+  TagApi(this.dio);
 
   Future<List<Category>> fetchCategories(String id) async {
     final response = await dio.get(

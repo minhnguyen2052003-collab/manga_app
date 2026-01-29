@@ -1,7 +1,9 @@
-import 'package:comic_app_gpt/features/manga/presentation/provider/category_state_provider.dart';
-import 'package:comic_app_gpt/features/manga/presentation/provider/state_list_manga_provider.dart';
+
+import 'package:comic_app_gpt/presentation/list_manga_screen/modelview/state_list_manga_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../modelview/category_provider.dart';
 
 class AppDrawerWidget extends ConsumerStatefulWidget{
   const AppDrawerWidget({super.key});

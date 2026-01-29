@@ -1,15 +1,18 @@
-import 'package:comic_app_gpt/core/widgets/app_drawer_widget.dart';
-import 'package:comic_app_gpt/features/manga/presentation/provider/category_state_provider.dart';
-import 'package:comic_app_gpt/features/manga/presentation/provider/state_list_manga_provider.dart';
+import 'package:comic_app_gpt/domain/repository/cart_repository.dart';
+import 'package:comic_app_gpt/domain/usecase/add_to_cart.dart';
+import 'package:comic_app_gpt/presentation/cart_creen/bloc/cart_bloc.dart';
+import 'package:comic_app_gpt/presentation/cart_creen/view/cart_screen.dart';
+import 'package:comic_app_gpt/presentation/list_manga_screen/widget/app_drawer_widget.dart';
+import 'package:comic_app_gpt/presentation/list_manga_screen/modelview/state_list_manga_provider.dart';
+import 'package:comic_app_gpt/presentation/login_screen/modelview/login_controller.dart';
+import 'package:comic_app_gpt/presentation/login_screen/view/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:comic_app_gpt/domain/repository/manga_repository.dart';
-import 'package:comic_app_gpt/domain/service/manga_api.dart';
-import 'package:comic_app_gpt/core/widgets/manga_item_widget.dart';
-import '../../data/models/manga.dart';
-import '../controller/manga_controller.dart';
+import 'package:comic_app_gpt/presentation/list_manga_screen/widget/manga_item_widget.dart';
+import '../../favorite_manga_screen/view/list_favorite_manga_screen.dart';
+import '../modelview/manga_controller.dart';
 
 class ListMangaScreen extends ConsumerStatefulWidget {
   const ListMangaScreen({super.key});
@@ -51,121 +54,28 @@ class _ListMangaScreenState extends ConsumerState<ListMangaScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(stateListMangaProvider);
-    String? appBarTitle = state.title;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 50),
-          child: isSearching
-              ? TextField(
-                  controller: controller,
-                  key: ValueKey("searching"),
-                  autofocus: true,
-                  decoration: InputDecoration(
-                    hintText: "Tìm kiếm....",
-                    border: InputBorder.none,
-                  ),
-                  onChanged: (value) {
-                    ref
-                        .read(stateListMangaProvider.notifier)
-                        .loadWithText(value);
-                  },
-                  onSubmitted: (value) {
-                    setState(() {
-                      appBarTitle = state.title!;
-                      isSearching = false;
-                    });
-                  },
-                )
-              : Text(
-                  appBarTitle!,
-                  key: ValueKey("init"),
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(isSearching ? Icons.close : Icons.search),
-            onPressed: () {
-              setState(() {
-                if (isSearching) {
-                  controller.clear();
-                  ref
-                      .read(stateListMangaProvider.notifier)
-                      .loadWithText(controller.text);
-                }
-                isSearching = !isSearching;
-              });
-            },
-          ),
-        ],
+    return state.isLoading && state.listManga.isEmpty
+        ? const Center(child: CircularProgressIndicator())
+        : GridView.builder(
+      controller: _scrollController,
+      padding: const EdgeInsets.all(12),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 0.65,
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 16,
       ),
+      itemCount: state.listManga.length,
+      itemBuilder: (context, index) {
+        if (index == state.listManga.length) {
+          return const Center(child: CircularProgressIndicator());
+        }
 
-      drawer: AppDrawerWidget(),
-      body: state.isLoading && state.listManga.isEmpty
-          ? const Center(child: CircularProgressIndicator())
-          : GridView.builder(
-              controller: _scrollController,
-              padding: const EdgeInsets.all(12),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.65,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 16,
-              ),
-              itemCount: state.listManga.length,
-              itemBuilder: (context, index) {
-                if (index == state.listManga.length) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-
-                final manga = state.listManga[index];
-                return MangaItemWidget(manga: manga);
-              },
-            ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              Expanded(
-                child: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      isSearching = false;
-                      appBarTitle = "Danh sách truyện";
-                      ref
-                          .read(stateListMangaProvider.notifier)
-                          .loadHome();
-                    });
-                  },
-                  icon: const Icon(Icons.home),
-                  style: IconButton.styleFrom(iconSize: 32),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: IconButton(
-                  onPressed: () {
-                    // Navigator.push(context, MaterialPageRoute(
-                    //     builder: (ctx) => ListFavoriteMangaScreen()));
-                  },
-                  icon: const Icon(Icons.star),
-                  style: IconButton.styleFrom(
-                    iconSize: 32,
-                    foregroundColor: Colors.amber,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+        final manga = state.listManga[index];
+        return MangaItemWidget(manga: manga);
+      },
     );
+
+
   }
 }
