@@ -19,3 +19,9 @@
 
 ### 🗂 Category
 ![Category](screenshots/category.jpg)
+### ⭐ Rate
+![Rate](screenshots/rate.jpg)
+
+### 🔎 Search with Category
+![Search with Category](screenshots/searchwithcategory.jpg)
+
